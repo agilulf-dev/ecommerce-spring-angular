@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ProductsComponent} from "./products/products.component";
 import {ShoppingCartComponent} from "./shopping-cart/shopping-cart.component";
 import {OrdersComponent} from "./orders/orders.component";
+import {ProductFormComponent} from "./product-form/product-form.component";
 
 @Component({
   selector: 'app-ecommerce',
@@ -10,17 +11,20 @@ import {OrdersComponent} from "./orders/orders.component";
 })
 
 export class EcommerceComponent implements OnInit {
-  collapsed = true;
   orderFinished = false;
+  isAddingProduct = false;
 
-  @ViewChild('productsC')
-  productsC: ProductsComponent;
+  @ViewChild('productsComponent')
+  productsComponent: ProductsComponent;
 
-  @ViewChild('shoppingCartC')
-  shoppingCartC: ShoppingCartComponent;
+  @ViewChild('shoppingCartComponent')
+  shoppingCartComponent: ShoppingCartComponent;
 
-  @ViewChild('ordersC')
-  ordersC: OrdersComponent;
+  @ViewChild('ordersComponent')
+  ordersComponent: OrdersComponent;
+
+  @ViewChild('productFormComponent')
+  productFormComponent: ProductFormComponent;
 
   constructor() {
   }
@@ -28,18 +32,20 @@ export class EcommerceComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  toggleCollapsed() {
-    this.collapsed = !this.collapsed;
-  }
-
   reset() {
     this.orderFinished = false;
-    this.ordersC.paid = false;
-    this.productsC.reset();
-    this.shoppingCartC.reset();
+    this.ordersComponent.paid = false;
+    this.isAddingProduct = false;
+    this.productsComponent.reset();
+    this.shoppingCartComponent.reset();
   }
 
   finishOrder(orderFinished: boolean) {
     this.orderFinished = orderFinished;
+  }
+
+  addProduct() {
+    this.isAddingProduct = true;
+    this.productFormComponent.reset();
   }
 }

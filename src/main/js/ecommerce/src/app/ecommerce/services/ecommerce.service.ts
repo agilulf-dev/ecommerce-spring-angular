@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs';
 import {ProductOrder} from "../models/product.order.model";
 import {ProductOrders} from "../models/product.orders.model";
+import {Product} from "../models/product.model";
 
 @Injectable()
 export class EcommerceService {
@@ -32,6 +33,10 @@ export class EcommerceService {
 
   saveOrder(order: ProductOrders) {
     return this.http.post(this.ordersUrl, order);
+  }
+
+  addProduct(product: Product) {
+    return this.http.post<Product>(this.productsUrl, product);
   }
 
   set SelectedProductOrder(value: ProductOrder) {
