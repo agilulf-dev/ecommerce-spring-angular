@@ -125,5 +125,7 @@
       }
     }
   },
-  "defaultProject": "ecommerce"
+  "cli": {
+    "analytics": false
+  }
 }
